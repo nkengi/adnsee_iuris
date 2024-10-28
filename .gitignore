@@ -1,0 +1,14 @@
+# Node modules
+node_modules/
+
+# Next.js build output
+.next/
+
+# Logs
+*.log
+
+# Environment variables
+.env
+
+# .gitignore
+.DS_Store
