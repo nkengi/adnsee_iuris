@@ -42,7 +42,7 @@ export default function Account() {
           </label>
           <select
             id="accountType"
-            className="w-full p-2 border border-gray-300 rounded"
+            className="w-full p-2 border border-gray-300 rounded text-black"
             value={accountType}
             onChange={handleAccountTypeChange}
           >

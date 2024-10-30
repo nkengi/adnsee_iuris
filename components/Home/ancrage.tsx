@@ -1,25 +1,34 @@
 "use client"; // Obligatoire pour utiliser des hooks côté client
-
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 
 export default function Ancrage() {
   // Références pour les sections
   const personnelSectionRef = useRef<HTMLDivElement>(null);
   const professionnelSectionRef = useRef<HTMLDivElement>(null);
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   // Fonction pour gérer le scroll
   const handleScrollToSection = (
     e: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
     sectionRef: React.RefObject<HTMLDivElement>
   ) => {
-    e.preventDefault(); // Empêche le comportement par défaut du lien
+    e.preventDefault();
     if (sectionRef.current) {
       sectionRef.current.scrollIntoView({
-        behavior: "smooth", // Défilement fluide
-        block: "start", // Commence au début de la section
+        behavior: "smooth",
+        block: "start",
       });
     }
+  };
+
+  const handleRedirect = (path: string) => {
+    //https://nextjs.org/docs/messages/react-hydration-error
+    if (isClient) window.location.href = path;
   };
 
   return (
@@ -27,14 +36,7 @@ export default function Ancrage() {
       <main className="flex flex-col gap-8 row-start-2 items-start">
         {/* Nouvelle div pour centrer le contenu */}
         <div className="flex flex-col items-center min-h-screen text-left w-full">
-          <Image
-            className="dark:invert mb-4"
-            src="https://nextjs.org/icons/next.svg"
-            alt="IURIS"
-            width={180}
-            height={38}
-            priority
-          />
+          <h1 className="text-4xl font-bold text-white h-[38px] w-[180px] mb-4">Nkengi</h1>
 
           <ol className="list-inside list-decimal text-sm mb-4 font-[family-name:var(--font-geist-mono)]">
             <li className="mb-2">
@@ -102,7 +104,7 @@ export default function Ancrage() {
           <p>Bienvenue dans la section Professionel.</p>
           <button
             className="mt-4 rounded-full bg-white text-black hover:bg-gray-200 h-10 px-4"
-            onClick={() => window.location.href = '/signup?type=professionel'}
+            onClick={() => handleRedirect('/signup?type=professionel')}
           >
             Get started
           </button>
@@ -125,7 +127,7 @@ export default function Ancrage() {
               <p>Bienvenue dans la section Personel.</p>
               <button
                 className="mt-4 rounded-full bg-foreground text-background hover:bg-[#383838] dark:hover:bg-[#ccc] h-10 px-4"
-                onClick={() => window.location.href = '/signup?type=personel'}
+                onClick={() => handleRedirect('/signup?type=personel')}
               >
                 Get started
               </button>
@@ -137,7 +139,7 @@ export default function Ancrage() {
               <p>Bienvenue dans la section Professionel.</p>
               <button
                 className="mt-4 rounded-full bg-white text-black hover:bg-gray-200 h-10 px-4"
-                onClick={() => window.location.href = '/signup?type=professionel'}
+                onClick={() => handleRedirect('/signup?type=professionel')}
               >
                 Get started
               </button>
@@ -191,7 +193,7 @@ export default function Ancrage() {
             width={16}
             height={16}
           />
-          Go to tdnu.org →
+          Go to nkengi.org →
         </a>
       </footer>
     </div>

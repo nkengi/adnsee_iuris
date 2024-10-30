@@ -11,9 +11,9 @@ interface PageProps {
 }
 
 export default async function Page(props: PageProps) {
-  // import must be inside the Page component
+  // import must be inside the Page component?
   // https://www.builder.io/c/docs/integration-tips#enabling-data-bindings-in-node-environments
-  await import('isolated-vm');
+  // await import('isolated-vm');
   const builderModelName = "page";
 
   const content = await builder
