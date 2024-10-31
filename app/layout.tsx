@@ -14,7 +14,7 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "IURIS",
+  title: "Nkengi",
   description: "Droit Natuel Application ",
 };
 
