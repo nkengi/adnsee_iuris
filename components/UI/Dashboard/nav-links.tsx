@@ -14,10 +14,10 @@ import Image from 'next/image';
     { name: 'Home', href: '/dashboard', icon: "/svg/dashboard-3.svg" },
     {
       name: 'Process',
-      href: '/process',
+      href: '/dashboard/process',
       icon: "/svg/flowchart-hierarchy-process-2.svg",
     },
-    { name: 'Settings', href: `/settings`, icon: "/svg/settings-gear.svg" },
+    { name: 'Settings', href: `/dashboard/settings`, icon: "/svg/settings-gear.svg" },
   ];
   
   export default function NavLinks() {

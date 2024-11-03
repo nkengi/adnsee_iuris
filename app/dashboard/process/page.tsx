@@ -1,16 +1,14 @@
 import { Metadata } from 'next';
  
 export const metadata: Metadata = {
-  title: 'Dashboard',
+  title: 'Process',
 };
-
-export const dynamic = "force-dynamic";
  
-export default async function Dashboard() {
+export default async function Process() {  
   return (
     <main>
       <h1 className={` mb-4 text-xl md:text-2xl`}>
-        Dashboard - Perso - Pro - Fusion for User & SuperUser
+        Process Admin, Perso et Pro User a configurer en fonction de l'objet User ,type de compte...
       </h1>
     </main>
   );
