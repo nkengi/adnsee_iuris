@@ -1,14 +1,14 @@
 import { Metadata } from 'next';
  
 export const metadata: Metadata = {
-  title: 'Process',
+  title: 'Dashboard Pro',
 };
  
-export default async function Process() {  
+export default async function DashPro() {
   return (
     <main>
       <h1 className={` mb-4 text-xl md:text-2xl`}>
-        Process Admin, Perso et Pro User a configurer en fonction de l'objet User ,type de compte...
+        Dashboard Pro...
       </h1>
     </main>
   );
