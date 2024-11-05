@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import NavLinks from '@/components/UI/Dashboard/nav-links';
+import NavLinks from '@/components/UI/Dashboard/nav-links-perso';
 import NkengiLogo from './nkengi-logo';
 import Image from 'next/image';
 // import { signOut } from '@/auth';
