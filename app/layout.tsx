@@ -14,7 +14,7 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Nkengi",
+  title: "ADnSee Iuris",
   description: "Droit Natuel Application ",
 };
 

@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import NavLinks from '@/components/UI/Dashboard/nav-links-admin';
-import NkengiLogo from './nkengi-logo';
+import ADnSee_Iuris_Logo from './ADnSee_Iuris-logo';
 import Image from 'next/image';
 // import { signOut } from '@/auth';
 
@@ -12,7 +12,7 @@ export default function SideNav() {
         href="/"
       >
         <div className="w-32 text-white md:w-40">
-          <NkengiLogo />
+          <ADnSee_Iuris_Logo />
         </div>
       </Link>
       <div className="flex grow flex-row justify-between space-x-2 md:flex-col md:space-x-0 md:space-y-2">

@@ -1,7 +1,6 @@
-import BuilderDevTools from "@builder.io/dev-tools/next";
 import type { NextConfig } from "next";
 
-const nextConfig: NextConfig = BuilderDevTools()({
+const nextConfig: NextConfig = ({
   /* config options here */
   // Builder.io props? 2 ways bindings in visual
   // error hydration https://nextjs.org/docs/messages/react-hydration-error

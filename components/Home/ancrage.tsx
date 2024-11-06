@@ -36,7 +36,7 @@ export default function Ancrage() {
       <main className="flex flex-col gap-8 row-start-2 items-start">
         {/* Nouvelle div pour centrer le contenu */}
         <div className="flex flex-col items-center min-h-screen text-left w-full">
-          <h1 className="text-4xl font-bold text-white h-[38px] w-[180px] mb-4">Nkengi</h1>
+          <h1 className="text-4xl font-bold text-white h-[38px] w-[230px] mb-4">ADnSee Iuris</h1>
 
           <ol className="list-inside list-decimal text-sm mb-4 font-[family-name:var(--font-geist-mono)]">
             <li className="mb-2">
@@ -193,7 +193,7 @@ export default function Ancrage() {
             width={16}
             height={16}
           />
-          Go to nkengi.org →
+          Go to ADnSee-Iuris.org →
         </a>
       </footer>
     </div>
