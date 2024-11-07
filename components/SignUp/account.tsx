@@ -1,25 +1,21 @@
-"use client"; // Permet d'utiliser des hooks React côté client
+"use client"; // Active les hooks React côté client
 
 import { useState, useEffect } from "react";
-import { useSearchParams } from "next/navigation"; // Utilisé pour capturer les paramètres d'URL dans Next.js
+import { useSearchParams } from "next/navigation"; // Récupère les paramètres d'URL
 
 export default function Account() {
-  const searchParams = useSearchParams(); // Capture les paramètres de la query string
-  const initialAccountType = searchParams.get("type") || "personel"; // Récupère le type depuis l'URL ou par défaut "personel"
+  const searchParams = useSearchParams();
+  const initialAccountType = searchParams.get("type") || "personel"; // Type d'account par défaut "personel"
 
-  const [accountType, setAccountType] = useState<string>(initialAccountType); // State pour stocker le type d'account
-  const [theme, setTheme] = useState<string>("light"); // State pour le thème
+  const [accountType, setAccountType] = useState<string>(initialAccountType); // Gère le type d'account
+  const [theme, setTheme] = useState<string>("light"); // Gère le thème clair/sombre
 
-  // Change le thème en fonction du type d'account
+  // Ajuste le thème en fonction du type d'account sélectionné
   useEffect(() => {
-    if (accountType === "personel") {
-      setTheme("light");
-    } else {
-      setTheme("dark");
-    }
+    setTheme(accountType === "personel" ? "light" : "dark");
   }, [accountType]);
 
-  // Gestionnaire pour changer le type d'account via le formulaire
+  // Change le type d'account via la sélection
   const handleAccountTypeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setAccountType(e.target.value);
   };
@@ -33,9 +29,10 @@ export default function Account() {
       <h1 className="text-4xl font-bold mb-8">Sign Up</h1>
 
       <form className="w-full max-w-md bg-gray-100 p-8 rounded-lg shadow-md">
+        {/* Type de Compte */}
         <div className="mb-4">
           <label
-            className="block text-sm font-bold mb-2 text-black" // Forcer le texte en noir
+            className="block text-sm font-bold mb-2 text-black" // Texte des labels fixe en noir
             htmlFor="accountType"
           >
             Type de Compte
@@ -51,11 +48,9 @@ export default function Account() {
           </select>
         </div>
 
+        {/* Pseudo */}
         <div className="mb-4">
-          <label
-            className="block text-sm font-bold mb-2 text-black" // Forcer le texte en noir
-            htmlFor="username"
-          >
+          <label className="block text-sm font-bold mb-2 text-black" htmlFor="username">
             Pseudo
           </label>
           <input
@@ -66,11 +61,9 @@ export default function Account() {
           />
         </div>
 
+        {/* Email */}
         <div className="mb-4">
-          <label
-            className="block text-sm font-bold mb-2 text-black" // Forcer le texte en noir
-            htmlFor="email"
-          >
+          <label className="block text-sm font-bold mb-2 text-black" htmlFor="email">
             E-mail
           </label>
           <input
@@ -81,11 +74,9 @@ export default function Account() {
           />
         </div>
 
+        {/* Mot de Passe */}
         <div className="mb-6">
-          <label
-            className="block text-sm font-bold mb-2 text-black" // Forcer le texte en noir
-            htmlFor="password"
-          >
+          <label className="block text-sm font-bold mb-2 text-black" htmlFor="password">
             Mot de Passe
           </label>
           <input
@@ -96,6 +87,7 @@ export default function Account() {
           />
         </div>
 
+        {/* Bouton Sign Up */}
         <button
           type="submit"
           className={`w-full py-2 px-4 font-bold rounded ${
