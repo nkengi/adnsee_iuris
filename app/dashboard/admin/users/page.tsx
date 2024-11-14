@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
- 
+import UserAssignment from "@/components/UI/Admin/UserAssignment";
 export const metadata: Metadata = {
   title: 'Users',
 };
@@ -7,14 +7,7 @@ export const metadata: Metadata = {
 export default function Users(){
     return (
         <>
-            <h1>Users admin</h1>
-            <h2>Create Edit Suppr a specifique SuperUser</h2>
-            <h2>Users listing</h2>
-            <ol>
-                <li>Info utilisateur</li>
-                <li>listing facturation</li>
-            </ol>
-            
+            <UserAssignment/>
         </>
     );
 }
