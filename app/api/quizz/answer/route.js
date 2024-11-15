@@ -1,6 +1,6 @@
 // app/api/quiz/answer/route.js
 import { z } from 'zod';
-import { AnswerSchema } from '@/utils/quizSchema';
+import { AnswerSchema } from '@/models/quizSchema';
 
 export async function POST(req) {
   const body = await req.json();

@@ -106,6 +106,7 @@ export default function SignUpForm() {
           </label>
           <select
             id="accountType"
+            name="accountType"
             className="w-full p-2 border border-gray-300 rounded text-black"
             value={accountType}
             onChange={handleAccountTypeChange}
@@ -136,7 +137,7 @@ export default function SignUpForm() {
 
         {/* Mail */}
         <div className="mb-4">
-          <label className="block text-sm font-bold mb-2 text-black" htmlFor="email">
+          <label className="block text-sm font-bold mb-2 text-black" htmlFor="mail">
             Mail
           </label>
           <input
@@ -157,7 +158,7 @@ export default function SignUpForm() {
             Password
           </label>
           <input
-            id="passwd"
+            id="password"
             type="password"
             name="password"
             className="w-full p-2 border border-gray-300 rounded"

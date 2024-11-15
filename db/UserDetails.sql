@@ -1,4 +1,4 @@
-CREATE TABLE userDetails (
+CREATE TABLE user_details (
     user_id INT REFERENCES users(id) ON DELETE CASCADE,
     profile_picture VARCHAR(255),
     first_name VARCHAR(50),

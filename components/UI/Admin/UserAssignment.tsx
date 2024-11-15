@@ -14,10 +14,10 @@ type Users = {
 export default function UserAssignment() {
   const [users, setUsers] = useState<Users[]>([]);
   const [selectedUser, setSelectedUser] = useState<Users | null>(null);
-  const [role, setRole] = useState<string>("specificUser");
+  const [role, setRole] = useState<string>("");
 
   useEffect(() => {
-    async function fetchUsers1() {
+    async function fetchUsers() {
       try {
         const response = await fetch("/api/admin/users/listUsers");
         if (!response.ok) throw new Error("Failed to fetch users");
@@ -32,7 +32,7 @@ export default function UserAssignment() {
         console.error("Error fetching users p1:", error);
       }
     }
-    fetchUsers1();
+    fetchUsers();
   }, []);
 
   const handleAssignRole = async () => {
@@ -118,6 +118,8 @@ export default function UserAssignment() {
       <h2 className="text-xl font-semibold mb-4">Assign Roles to Users</h2>
 
       <select
+        id="userSelection"
+        name="userSelection"
         onChange={handleUserSelect}
         value={selectedUser?.id || ""}
         className="block w-full p-2 mb-4 border border-gray-300 rounded"
@@ -142,6 +144,8 @@ export default function UserAssignment() {
       )}
 
       <select
+      id="assignRoleUser"
+      name="assignRoleUser"
         onChange={(e) => setRole(e.target.value)}
         value={role}
         className="block w-full p-2 mb-4 border border-gray-300 rounded"

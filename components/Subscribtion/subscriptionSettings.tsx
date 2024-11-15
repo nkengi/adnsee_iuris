@@ -1,5 +1,6 @@
 // components/SubscriptionSettings.js
 import { useState, useEffect } from 'react';
+import { subscriptionSchema } from "@/models/SubscriptionSchema";
 
 export default function SubscriptionSettings({ user }) {
   const [subscriptionStatus, setSubscriptionStatus] = useState(null);
@@ -14,7 +15,7 @@ export default function SubscriptionSettings({ user }) {
   }, [user.id]);
 
   const handleSubscriptionChange = async (newPlan) => {
-    const response = await fetch('/api/subscription/change', {
+    const response = await fetch('/api/subscription/update', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ userId: user.id, newPlan }),

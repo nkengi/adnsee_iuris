@@ -1,42 +1,41 @@
+// /app/api/admin/users/assignRole/route.ts
 import { NextRequest, NextResponse } from "next/server";
-import { queryDatabase } from '@/db/db';
+import { z } from "zod";
+import { queryDatabase } from "@/db/db";
+
+const assignRoleSchema = z.object({
+  userId: z.number(),
+  role: z.string(),
+});
+
+const tableStructure = await queryDatabase(
+  `SELECT column_name FROM information_schema.columns WHERE table_name = 'super_user'`
+);
+console.log("super_user table structure:", tableStructure);
+
 
 export async function POST(req: NextRequest) {
   try {
-    const { userId, role } = await req.json();
-    console.log(`Req server Json\n userId: ${userId}\n role: ${role}`);
-    console.log(`type of userId:\n ${typeof userId}`);
-    console.log(`type of role:\n ${typeof role}`);
-    
+    const { userId, role } = assignRoleSchema.parse(await req.json());
 
     let result;
-
     if (role === "none") {
-      // Delete role if "none" is chosen
-      result = await queryDatabase(
-        `DELETE FROM superUser WHERE user_id = $1 RETURNING *`,
-        [userId]
-      );
-      console.log(`Role deletion result:\n${JSON.stringify(result)}`);
+      result = await queryDatabase("DELETE FROM super_user WHERE user_id = $1 RETURNING *", [userId]);
     } else {
-      // Insert or update role
-      
       result = await queryDatabase(
-        `INSERT INTO superuser (user_id, current_role)
+        `INSERT INTO super_user (user_id, current_role)
          VALUES ($1, $2)
          ON CONFLICT (user_id) DO UPDATE SET current_role = $2
          RETURNING *`,
         [userId, role]
       );
-      console.log(`Role insertion/updating result:\n${JSON.stringify(result)}`);
     }
-
-    // Assuming result is an array
-    const assignedRole = result ? result[0] : null;
-    return NextResponse.json({ status: "success", data: assignedRole });
+    console.log(`result assign role:\n${result}`);
     
+
+    return NextResponse.json({ status: "success", data: result[0] });
   } catch (error) {
-    const message = error instanceof Error ? error.message : 'Unknown error';
-    return NextResponse.json({ status: 'error', message });
+    const errorMessage = error instanceof Error ? error.message : error;
+    return NextResponse.json({ status: "error", message: errorMessage });
   }
 }

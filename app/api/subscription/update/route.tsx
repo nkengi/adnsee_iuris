@@ -1,6 +1,5 @@
-// app/api/subscription/change/route.js
-// import { subscriptionSchema } from "@/models/userSchema";
-// import { prisma } from "@/lib/prisma";
+// app/api/subscription/update/route.js
+import { subscriptionSchema } from "@/models/SubscriptionSchema";
 import { NextRequest, NextResponse } from 'next/server';
 import { sql } from '@vercel/postgres';
 import { queryDatabase } from '@/db/db';
@@ -27,7 +26,7 @@ export async function POST(req: NextRequest) {
             ]
         );
 
-        return new Response(JSON.stringify({ success: true, subscription }), { status: 200 });
+        return new Response(JSON.stringify({ success: true, result }), { status: 200 });
     } catch (error) {
         const message = error instanceof Error ? error.message : 'Erreur inconnue';
 

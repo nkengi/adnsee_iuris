@@ -50,7 +50,7 @@ export async function GET() {
         const allusers = await queryDatabase(
             `SELECT u.*, COALESCE(s.current_role, 'none')
             FROM users u
-            LEFT JOIN superuser s ON u.id = s.user_id;
+            LEFT JOIN super_user s ON u.id = s.user_id;
             `
         );
         
