@@ -4,8 +4,6 @@ import { useState } from "react";
 import { useRouter } from 'next/navigation';
 import { z } from "zod"; // Importation de Zod pour la validation
 
-const router = useRouter();
-
 // Schéma de validation pour les données de connexion
 const signinSchema = z.object({
   usernameOrMail: z.string().min(3, 'Username or mail est required.'),
@@ -16,9 +14,9 @@ export default function SignInForm() {
   const [theme, setTheme] = useState<string>("light"); // Gestion du thème clair ou sombre
   const [usernameOrMail, setusernameOrMail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState<String | null>(null); // Gestion des messages texte d'erreurs au user.
   const [errors, setErrors] = useState<any>({}); // Gestion des messages d'erreurs à afficher au user.
-
-
+  const router = useRouter();
   const [formData, setFormData] = useState({
     usernameOrMail: "",
     password: "",
@@ -44,7 +42,12 @@ export default function SignInForm() {
         error.errors.forEach((err) => {
           newErrors[err.path[0]] = err.message;
         });
+        // console.log(newErrors);
+
         setErrors(newErrors);
+        console.log(`errors validation fn:\n${JSON.stringify(errors)}`);
+
+
       }
       return false;
     }
@@ -54,6 +57,8 @@ export default function SignInForm() {
     e.preventDefault();
 
     if (!validateForm()) return; // Si la validation échoue, ne pas soumettre
+    console.log(`formData:\n${formData}`);
+
     try {
       const response = await fetch("/api/auth/signin", {
         method: "POST",
@@ -63,14 +68,20 @@ export default function SignInForm() {
       });
       const result = await response.json();
       if (result.success) {
+        console.log(`handleSignIn result sucess:\n${JSON.stringify(result)}`);
+
+
         alert("Login succeeded!");
-        router.push(`/dashboard/${result.accountType}`);
+        router.push(`/dashboard/${result.user.type_account}`);
       } else {
         setErrors({ ...errors, submit: result.error });
+        console.log(`handleSignIn fn errors:\n${JSON.stringify(errors)}`);
+
       }
     } catch (error) {
       setErrors({ ...errors, submit: "Une erreur s'est produite lors du login." });
     }
+    console.log(`errors:\n${JSON.stringify(errors)}`);
 
   };
 
@@ -85,7 +96,7 @@ export default function SignInForm() {
         <div className="mb-4">
           <label
             className="block text-sm font-bold mb-2 text-black"
-            htmlFor="email"
+            htmlFor="usernameOrMail"
           >
             Username or E-mail
           </label>
@@ -93,12 +104,13 @@ export default function SignInForm() {
             id="usernameOrMail"
             type="text"
             name="usernameOrMail"
+            autoComplete="on"
             className="w-full p-2 border border-gray-300 rounded"
             placeholder="Username or mail"
             value={formData.usernameOrMail}
             onChange={handleChange}
           />
-          {errors.usernameOrMail && <p className="text-red-500 text-xs">{errors.usernameOrMail}</p>}
+          {errors.username && <p className="text-red-500 text-xs mt-4 ">{errors.username}</p>}
         </div>
 
         <div className="mb-6">
@@ -112,26 +124,27 @@ export default function SignInForm() {
             id="password"
             type="password"
             name="password"
+            autoComplete="on"
             className="w-full p-2 border border-gray-300 rounded"
             placeholder="Password"
             value={formData.password}
             onChange={handleChange}
-            // Check errors type warning
-            // {errors.password && <p className="text-red-500 text-xs">{errors.password}</p>}
-
-
+          // Check errors type warning
           />
+          {errors.password && <p className="text-red-500 text-xs mt-4">{errors.password}</p>}
+
         </div>
 
         <button
           type="submit"
           className={`w-full py-2 px-4 font-bold rounded ${theme === "light"
-              ? "bg-blue-500 text-white hover:bg-blue-700"
-              : "bg-green-500 text-white hover:bg-green-700"
+            ? "bg-blue-500 text-white hover:bg-blue-700"
+            : "bg-green-500 text-white hover:bg-green-700"
             }`}
         >
           Sign In
         </button>
+        {errors.submit && <p className="text-red-500 text-xs mt-4">{errors.submit}</p>}
       </form>
 
       <button

@@ -8,16 +8,16 @@ import { useRouter } from 'next/navigation';
 // Schéma de validation Zod pour le formulaire
 const userSchema = z.object({
   username: z.string().min(3, "Le pseudo doit contenir au moins 3 caractères."),
-  email: z.string().email("Email invalide"),
+  mail: z.string().email("Email invalide"),
   password: z.string().min(8, "Le mot de passe doit contenir au moins 8 caractères."),
-  accountType: z.enum(["personel", "professionel"]),
+  accountType: z.enum(["perso", "pro"]),
 });
 
 export default function SignUpForm() {
   const [error, setError] = useState<String | null>(null); // Gestion des messages texte d'erreurs au user.
   const [errors, setErrors] = useState<any>({}); // Gestion des messages d'erreurs à afficher au user.
   const searchParams = useSearchParams();
-  const initialAccountType = searchParams.get("type") || "personel"; // Type d'account par défaut "personel"
+  const initialAccountType = searchParams.get("type") || "perso"; // Type d'account par défaut "personel"
   const [accountType, setAccountType] = useState<string>(initialAccountType); // Gère le type d'account
   const router = useRouter();
 
@@ -33,7 +33,7 @@ export default function SignUpForm() {
 
   // Ajuste le thème en fonction du type d'account sélectionné
   useEffect(() => {
-    setTheme(accountType === "personel" ? "light" : "dark");
+    setTheme(accountType === "perso" ? "light" : "dark");
   }, [accountType]); // accountType modifié reload cette fn useEffect pou changer de thème.
 
   // Change le type d'account via la sélection
@@ -68,7 +68,8 @@ export default function SignUpForm() {
     e.preventDefault();
 
     if (!validateForm()) return; // Si la validation échoue, ne pas soumettre
-
+    console.log(formData);
+    
     try {
       const response = await fetch("/api/auth/signup", {
         method: "POST",
@@ -111,8 +112,8 @@ export default function SignUpForm() {
             value={accountType}
             onChange={handleAccountTypeChange}
           >
-            <option value="personel">Personel</option>
-            <option value="professionel">Professionel</option>
+            <option value="perso">Personel</option>
+            <option value="pro">Professionel</option>
           </select>
           {errors.accountType && <p className="text-red-500 text-xs">{errors.accountType}</p>}
         </div>
@@ -126,6 +127,7 @@ export default function SignUpForm() {
             id="username"
             name="username"
             type="text"
+            autoComplete="on"
             className="w-full p-2 border border-gray-300 rounded"
             placeholder="Choose username"
             value={formData.username}
@@ -144,12 +146,13 @@ export default function SignUpForm() {
             id="mail"
             type="email"
             name="mail"
+            autoComplete="on"
             className="w-full p-2 border border-gray-300 rounded"
             placeholder="Your mail"
             value={formData.mail}
             onChange={handleChange}
           />
-          {errors.email && <p className="text-red-500 text-xs">{errors.email}</p>}
+          {errors.mail && <p className="text-red-500 text-xs">{errors.mail}</p>}
         </div>
 
         {/* Password */}
@@ -161,10 +164,12 @@ export default function SignUpForm() {
             id="password"
             type="password"
             name="password"
-            className="w-full p-2 border border-gray-300 rounded"
+            autoComplete="on"
+            className="w-full p-2 border text-black border-gray-300 rounded"
             placeholder="Password"
             value={formData.password}
             onChange={handleChange}
+            
           />
           {errors.password && <p className="text-red-500 text-xs">{errors.password}</p>}
         </div>

@@ -12,6 +12,8 @@ const pool = new Pool({
 
 export async function queryDatabase(query: string, values?: any[]) {
   const client = await pool.connect();
+  console.log(`Log admin db postgres`);
+  
   try {
     const result = await client.query(query, values);
     return result.rows;

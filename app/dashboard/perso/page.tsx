@@ -1,14 +1,14 @@
 import { Metadata } from 'next';
 import QuizList from "@/components/UI/Quiz/QuizList";
 import QuizTest from "@/components/UI/Quiz/QuizTest";
-import { useEffect, useState } from 'react';
+// import { useEffect, useState } from 'react';
 
 export const metadata: Metadata = {
     title: 'Dashboard Perso',
 };
 
 export default function DashPerso() {
-    const [quizSummary, setQuizSummary] = useState({ total: 0, themes: [], progress: {} });
+    // const [quizSummary, setQuizSummary] = useState({ total: 0, themes: [], progress: {} });
 
     // useEffect(() => {
     //     async function fetchData() {
@@ -42,4 +42,9 @@ export default function DashPerso() {
     //         </div>
     //     </>
     // );
+    return (
+        <>
+            <h1>Dashboard perso welcom</h1>
+        </>
+    );
 }
