@@ -2,7 +2,7 @@
 import { subscriptionSchema } from "@/models/SubscriptionSchema";
 import { NextRequest, NextResponse } from 'next/server';
 import { sql } from '@vercel/postgres';
-import { queryDatabase } from '@/db/db';
+import { queryDatabase } from '@/db/lib/db';
 import { z } from "zod"; // pour validation
 
 

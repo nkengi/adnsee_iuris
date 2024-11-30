@@ -1,9 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import bcrypt from "bcrypt";
-import { queryDatabase } from "@/db/db";
+import { queryDatabase } from "@/db/lib/pgDb";
 import { z } from "zod";
 
-// Schema validation with Zod
+// Schema User validation with Zod
 const userSchema = z.object({
   username: z.string().min(3, "Le pseudo doit contenir au moins 3 caractères."),
   mail: z.string().email("Email invalide"),

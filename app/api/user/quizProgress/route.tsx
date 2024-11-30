@@ -1,7 +1,7 @@
 // /app/api/user/quizProgress/route.ts
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
-import { queryDatabase } from "@/db/db";
+import { queryDatabase } from "@/db/lib/db";
 
 const quizProgressSchema = z.object({
   userId: z.number(),

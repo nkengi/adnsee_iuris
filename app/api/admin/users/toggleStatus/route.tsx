@@ -1,6 +1,6 @@
 // /app/api/admin/users/toggleStatus/[id]/route.ts
 import { NextRequest,NextResponse } from "next/server";
-import { queryDatabase } from "@/db/db";
+import { queryDatabase } from "@/db/lib/db";
 
 export async function PATCH(req: NextRequest, { params }: { params: { id: string } }) {
   try {

@@ -1,7 +1,7 @@
 // app/api/quiz/create/route.ts
 import { NextRequest, NextResponse } from 'next/server';
 import { sql } from '@vercel/postgres';
-import { queryDatabase } from '@/db/db';
+import { queryDatabase } from '@/db/lib/pgDb';
 import { QuizSchema } from '@/models/quizSchema';
 import { z } from "zod";
 

@@ -2,7 +2,7 @@ import Link from 'next/link';
 import NavLinks from '@/components/UI/Dashboard/nav-links-perso';
 import ADnSee_Iuris_Logo from './ADnSee_Iuris-logo';
 import Image from 'next/image';
-// import { signOut } from '@/auth';
+import { signOut } from '@/auth';
 
 export default function SideNav() {
   return (
@@ -21,7 +21,7 @@ export default function SideNav() {
         <form id="signout" name="SignOut" 
             action={async () => {
             'use server';
-            // await signOut();
+            await signOut();
             // alert("Sign Out");
           }}>
           <button className="flex h-[48px] w-full grow items-center justify-center gap-2 rounded-md bg-gray-50 p-3 text-sm font-medium hover:bg-sky-100 hover:text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3">

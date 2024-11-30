@@ -1,6 +1,6 @@
 // /app/api/user/quizzes/route.ts
 import { NextResponse } from "next/server";
-import { queryDatabase } from '@/db/db';
+import { queryDatabase } from '@/db/lib/db';
 
 // Tableau de quizzes
 const quizzes = [

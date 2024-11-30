@@ -1,6 +1,6 @@
 // /app/api/admin/users/listUsers/route.ts
 import { NextResponse } from "next/server";
-import { queryDatabase } from '@/db/db';
+import { queryDatabase } from '@/db/lib/db';
 // Example user data with different roles, access types, and status
 // const users = [
 //     {

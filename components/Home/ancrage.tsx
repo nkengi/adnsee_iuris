@@ -88,7 +88,7 @@ export default function Ancrage() {
           <p>Bienvenue dans la section Personel.</p>
           <button
             className="mt-4 rounded-full bg-foreground text-background hover:bg-[#383838] dark:hover:bg-[#ccc] h-10 px-4"
-            onClick={() => window.location.href = '/signup?type=personel'}
+            onClick={() => window.location.href = '/signup?type=perso'}
           >
             Get started
           </button>
@@ -104,7 +104,7 @@ export default function Ancrage() {
           <p>Bienvenue dans la section Professionel.</p>
           <button
             className="mt-4 rounded-full bg-white text-black hover:bg-gray-200 h-10 px-4"
-            onClick={() => handleRedirect('/signup?type=professionel')}
+            onClick={() => handleRedirect('/signup?type=pro')}
           >
             Get started
           </button>
@@ -127,7 +127,7 @@ export default function Ancrage() {
               <p>Bienvenue dans la section Personel.</p>
               <button
                 className="mt-4 rounded-full bg-foreground text-background hover:bg-[#383838] dark:hover:bg-[#ccc] h-10 px-4"
-                onClick={() => handleRedirect('/signup?type=personel')}
+                onClick={() => handleRedirect('/signup?type=perso')}
               >
                 Get started
               </button>
@@ -139,7 +139,7 @@ export default function Ancrage() {
               <p>Bienvenue dans la section Professionel.</p>
               <button
                 className="mt-4 rounded-full bg-white text-black hover:bg-gray-200 h-10 px-4"
-                onClick={() => handleRedirect('/signup?type=professionel')}
+                onClick={() => handleRedirect('/signup?type=pro')}
               >
                 Get started
               </button>

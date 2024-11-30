@@ -1,7 +1,7 @@
 // /app/api/admin/users/assignRole/route.ts
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
-import { queryDatabase } from "@/db/db";
+import { queryDatabase } from "@/db/lib/db";
 
 const assignRoleSchema = z.object({
   userId: z.number(),

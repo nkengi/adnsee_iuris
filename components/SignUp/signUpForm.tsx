@@ -132,6 +132,8 @@ export default function SignUpForm() {
             placeholder="Choose username"
             value={formData.username}
             onChange={handleChange}
+            minLength={3}
+            required
           />
           {errors.username && <p className="text-red-500 text-xs">{errors.username}</p>}
 
@@ -151,6 +153,8 @@ export default function SignUpForm() {
             placeholder="Your mail"
             value={formData.mail}
             onChange={handleChange}
+            required
+            maxLength={32}
           />
           {errors.mail && <p className="text-red-500 text-xs">{errors.mail}</p>}
         </div>
@@ -169,6 +173,9 @@ export default function SignUpForm() {
             placeholder="Password"
             value={formData.password}
             onChange={handleChange}
+            minLength={8}
+            maxLength={32}
+            required
             
           />
           {errors.password && <p className="text-red-500 text-xs">{errors.password}</p>}

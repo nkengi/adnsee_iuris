@@ -1,7 +1,7 @@
 // /app/api/auth/signin/route.ts
 import { NextResponse } from 'next/server';
 import { sql } from '@vercel/postgres'; // Connexion à la base de données
-import { queryDatabase } from "@/db/db";
+import { queryDatabase } from "@/db/lib/pgDb";
 
 import { z } from 'zod';
 import bcrypt from 'bcrypt';
@@ -18,7 +18,7 @@ export async function POST(request: Request) {
   try {
     // Parse and validate request body
     const { usernameOrMail, password } = signinSchema.parse(await request.json());
-    console.log(`{ usernameOrMail, password }:\n ${JSON.stringify({ usernameOrMail, password })}`);
+    console.log(`signin route api POST { usernameOrMail, password }:\n${JSON.stringify({ usernameOrMail, password })}`);
     
 
     // Recherche de l'utilisateur en fonction du pseudo ou de l'email
@@ -33,7 +33,7 @@ export async function POST(request: Request) {
       [usernameOrMail]
     );
   
-    console.log(`single user:\n${JSON.stringify(user)}`);
+    console.log(`route api/auth/signin  retrieving single user info:\n${JSON.stringify(user)}`);
     
 
     if (user.length === 0) {
